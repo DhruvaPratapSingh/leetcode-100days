@@ -1,0 +1,10 @@
+https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/?envType=daily-question&envId=2024-08-03
+bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        // brute force
+        sort(target.begin(),target.end());
+        sort(arr.begin(),arr.end());
+        for(int i=0;i<arr.size();i++){
+            if(target[i]!=arr[i])return 0;
+        }
+        return 1;
+    }
