@@ -1,0 +1,17 @@
+https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/
+ int rangeSum(vector<int>& nums, int n, int left, int right) {
+    vector<long long> ans; 
+    for (int i = 0; i < n; i++) {
+        long long sum = 0; 
+        for (int j = i; j < n; j++) {
+             sum = (sum + nums[j]) % mod;
+            ans.push_back(sum);
+        }
+    }
+    sort(ans.begin(), ans.end());
+    long long anssum = 0; 
+    for (int i = left - 1; i < right; i++) {
+        anssum = (anssum + ans[i]) % mod;  
+    }
+    return static_cast<int>(anssum); 
+    }
