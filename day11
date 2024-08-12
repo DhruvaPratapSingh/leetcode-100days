@@ -1,0 +1,121 @@
+https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/submissions/1353093677/?envType=study-plan-v2&envId=top-interview-150
+
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        map<int,int>m;
+        ListNode* dummy=new ListNode(-1);
+        ListNode* d=dummy;
+        ListNode* temp=head;
+        while(temp!=NULL){
+               m[temp->val]++;
+               temp=temp->next;
+            }
+       for(auto ele:m){
+        if(ele.second==1){
+        d->next=new ListNode(ele.first);
+        d=d->next;
+        }
+       }
+        return dummy->next;
+    
+    }
+};
+
+
+
+ListNode* dummy = new ListNode(-1);
+    dummy->next = head;
+    ListNode* prev = dummy;  // Previous node pointer
+    ListNode* current = head;  // Current node pointer
+
+    while (current != nullptr) {
+        bool isDuplicate = false;
+
+        // Check for duplicates
+        while (current->next != nullptr && current->val == current->next->val) {
+            current = current->next;
+            isDuplicate = true;
+        }
+
+        // If duplicates were found, skip them
+        if (isDuplicate) {
+            prev->next = current->next;
+        } else {
+            // No duplicates, move prev pointer
+            prev = prev->next;
+        }
+
+        // Move current pointer
+        current = current->next;
+    }
+
+    // Return the updated list without duplicates
+    return dummy->next;
+    }
+
+
+
+
+https://leetcode.com/problems/rotate-list/?envType=study-plan-v2&envId=top-interview-150
+
+class Solution {
+public:
+int getlen(ListNode* head){
+    int l=0;
+    while(head!=NULL){
+        l++;
+        head=head->next;
+    }
+    return l;
+}
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL)return NULL;
+        if(k==0)return head;
+        int l=getlen(head);
+        k=k%l;
+        vector<int>v;
+        while(head!=NULL){
+            v.push_back(head->val);
+            head=head->next;
+        }
+        int n=v.size();
+        vector<int>ans;
+        for(int i=n-k;i<n;i++){
+            ans.push_back(v[i]);
+        }
+        for(int i=0;i<n-k;i++){
+            ans.push_back(v[i]);
+        }
+        ListNode* dummy=new ListNode(-1);
+        ListNode* d=dummy;
+        for(int ele:ans){
+            d->next=new ListNode(ele);
+            d=d->next;
+        }
+        return dummy->next;
+    }
+};
+
+https://leetcode.com/problems/partition-list/submissions/1353122907/?envType=study-plan-v2&envId=top-interview-150
+
+ListNode* partition(ListNode* head, int x) {
+        ListNode* dummy=new ListNode(-1);
+        ListNode* lessernode=new ListNode(-1);
+        ListNode* d=dummy;
+        ListNode* l=lessernode;
+        while(head!=NULL){
+            if(head->val<x){
+                l->next=new ListNode(head->val);
+                l=l->next;
+            }
+            else {
+                d->next=new ListNode(head->val);
+                d=d->next;
+            }
+            head=head->next;
+        }
+         l->next=dummy->next;
+         return lessernode->next;
+    }
