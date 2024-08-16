@@ -1,2 +1,33 @@
 https://leetcode.com/problems/number-of-recent-calls/?envType=study-plan-v2&envId=leetcode-75
 
+
+class RecentCounter {
+public:
+queue<int>q;
+    RecentCounter() {   
+    }
+    
+    int ping(int t) {
+        if(q.size()==0){
+            q.push(t);
+            return 1;
+        }
+        else{
+            if(t<=3000) q.push(t);
+            else{
+                int diff=t-3000;
+                while(!q.empty() and diff>q.front()){
+                    q.pop();
+                }
+                q.push(t);
+            }
+            return q.size();
+        }
+    }
+};
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * RecentCounter* obj = new RecentCounter();
+ * int param_1 = obj->ping(t);
+ */
