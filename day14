@@ -31,3 +31,34 @@ queue<int>q;
  * RecentCounter* obj = new RecentCounter();
  * int param_1 = obj->ping(t);
  */
+
+
+
+https://leetcode.com/problems/dota2-senate/submissions/1357390059/?envType=study-plan-v2&envId=leetcode-75
+
+
+class Solution {
+public:
+    string predictPartyVictory(string senate) {
+        int n=senate.size();
+        int r=count(senate.begin(),senate.end(),'R');
+        int d=n-r;
+        int rc=0,dc=0,i=0;
+        while(r>0 and d>0){
+            if(senate[i]=='R' and rc>0){
+                rc--;
+                senate[i]='M';
+                r--;
+            }
+            else if(senate[i]=='D' and dc>0){
+                dc--;
+                senate[i]='M';
+                d--;
+            }
+            else if(senate[i]=='R')dc++;
+            else if(senate[i]=='D')rc++;
+            i=(i+1)%n;
+        }
+        return d>0 ? "Dire":"Radiant";
+    }
+};
