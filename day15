@@ -1,0 +1,22 @@
+https://leetcode.com/problems/online-stock-span/submissions/1358450067/?envType=study-plan-v2&envId=leetcode-75
+
+
+class StockSpanner {
+public:
+   int r;
+   stack<pair<int,int>>st;
+    StockSpanner() {
+     r=0;
+    }
+    
+    int next(int price) {
+        r=price;
+        int c=1;
+        while(!st.empty() and st.top().first<=r){
+            c+=st.top().second;
+            st.pop();
+        }
+        st.push({r,c});
+        return c;
+    }
+};
