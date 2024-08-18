@@ -1,0 +1,18 @@
+https://leetcode.com/problems/ugly-number-ii/submissions/1359851908/?envType=daily-question&envId=2024-08-18
+
+ int nthUglyNumber(int n) {
+       int a=1,b=1,c=1;
+       vector<int>v(n+1);
+       v[1]=1;
+       for(int i=2;i<=n;i++){
+        int j=v[a]*2;
+        int k=v[b]*3;
+        int l=v[c]*5;
+        int mini=min({j,k,l});
+        v[i]=mini;
+        if(mini==j) a++;
+        if(mini==k) b++;
+        if(mini==l)c++;
+       }
+       return v[n];
+    }
