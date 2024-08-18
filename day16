@@ -21,3 +21,40 @@ for(auto ele:rooms[node]){
         return 1;
     }
 };
+
+
+https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution {
+public:
+   int res=0;
+   void dfs(unordered_map<int,list<int>>&adj,vector<bool>&vis,int node){
+    vis[node]=1;
+    for(auto ele:adj[node]){
+      if(ele>=0){
+        if(!vis[ele]){
+            dfs(adj,vis,ele);
+        }
+      }
+      else{
+        ele=abs(ele);
+        if(!vis[ele]){
+            res++;
+            dfs(adj,vis,ele);
+        }
+      }
+    }
+   }
+    int minReorder(int n, vector<vector<int>>& c) {
+        int m=c.size();
+        unordered_map<int,list<int>>adj;
+        for(int i=0;i<m;i++){
+        adj[c[i][1]].push_back(c[i][0]);
+        adj[c[i][0]].push_back(-c[i][1]);
+        }
+        vector<bool>vis(n,0);
+        dfs(adj,vis,0);
+        if(res==0)return 0;
+        return res;
+        }
+};
