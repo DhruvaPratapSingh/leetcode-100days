@@ -1,0 +1,36 @@
+https://leetcode.com/problems/number-complement/description/?envType=daily-question&envId=2024-08-22
+
+
+ int findComplement(int num) {
+        int setbit=0;
+        int temp=num;
+        while(temp){
+            setbit=(setbit<<1)|1;
+            temp>>=1;
+        }
+        return num^setbit;
+    }
+
+ int findComplement(int n) {
+        string ans="";
+        while(n>0){
+            int r=n%2;
+            ans.push_back(r+'0');
+            n/=2;
+        }
+        reverse(ans.begin(),ans.end());
+        for(char ch:ans)cout<<ch<<" ";
+        cout<<endl;
+        int res=0;
+        int s=ans.size();
+        for(int i=0;i<s;i++){
+            if(ans[i]=='0')ans[i]='1';
+            else ans[i]='0';
+        }
+        for(char ch:ans)cout<<ch<<" ";
+        for(int i=0;i<s;i++){
+         int it=ans[i]-'0';
+         res=res+it*pow(2,s-i-1);
+        }
+        return res;
+    }
