@@ -1,0 +1,43 @@
+https://leetcode.com/problems/fraction-addition-and-subtraction/submissions/1365274145/?envType=daily-question&envId=2024-08-23
+
+class Solution {
+    private:
+     int gcda(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+public:
+    string fractionAddition(string &exp) {
+       int n=exp.size();
+      int i=0;
+      int a=0,b=1;
+      while(i<n){
+      int sign=1;
+      if(exp[i]=='+' || exp[i]=='-'){
+        sign=exp[i]=='-'?-1:1;
+        i++;
+      }
+      int c=0;
+      while(i<n and isdigit(exp[i])){
+        c=c*10+(exp[i]-'0');
+        i++;
+      }
+      i++;
+      int d=0;
+      while(i<n and isdigit(exp[i])){
+        d=d*10+(exp[i]-'0');
+        i++;
+      }
+      a=a*d+sign*b*c;
+      b*=d;
+      int gcd_val=gcda(abs(a),b);
+      a /=gcd_val;
+      b /=gcd_val;
+      }
+      return to_string(a)+'/'+to_string(b);
+    }
+};
