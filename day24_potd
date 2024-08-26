@@ -1,0 +1,14 @@
+https://leetcode.com/problems/n-ary-tree-postorder-traversal/description/?envType=daily-question&envId=2024-08-26
+
+ void helper(Node* root,vector<int>&ans){
+    if(root==NULL)return ;
+    for(auto &children :root->children){
+      helper(children,ans);
+    }
+    ans.push_back(root->val);
+   }
+    vector<int> postorder(Node* root) {
+        vector<int>ans;
+        helper(root,ans);
+        return ans;
+    }
