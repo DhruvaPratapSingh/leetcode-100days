@@ -1,0 +1,32 @@
+https://leetcode.com/problems/path-with-maximum-probability/description/
+
+ double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {
+    unordered_map<int, vector<pair<int, double>>> adj;
+    for (int i = 0; i < edges.size(); i++) {
+        int u = edges[i][0];
+        int v = edges[i][1];
+        adj[u].push_back({v, succProb[i]});
+        adj[v].push_back({u, succProb[i]});
+    }
+
+   priority_queue<pair<double,int>>pq;
+   vector<double>dist(n,0.0);
+   dist[start_node]=1.0;
+   pq.push({1.0,start_node});
+   while(!pq.empty()){
+    auto ele=pq.top();
+    int node=ele.second;
+    double prob=ele.first;
+    pq.pop();
+    if(node==end_node)return prob;
+    for(auto val:adj[node]){
+        double new_prob=val.second*prob;
+        int new_node=val.first;
+        if(new_prob>dist[new_node]){
+            dist[new_node]=new_prob;
+            pq.push({new_prob,new_node});
+        }
+    }
+   }
+   return 0.0;
+    }
