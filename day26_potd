@@ -1,0 +1,23 @@
+https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/submissions/1372275406/?envType=daily-question&envId=2024-08-29
+
+ void dfs(int n,int idx,vector<bool>&vis,vector<vector<int>>&s){
+    vis[idx]=1;
+    for(int i=0;i<n;i++){
+    if(!vis[i]){
+        if(s[idx][0]==s[i][0])dfs(n,i,vis,s);
+        if(s[idx][1]==s[i][1])dfs(n,i,vis,s);
+    }
+    }
+  }
+    int removeStones(vector<vector<int>>& stones) {
+        int n=stones.size();
+        int cnt=0;
+        vector<bool>vis(n);
+        for(int i=0;i<n;i++){
+            if(!vis[i]){
+                dfs(n,i,vis,stones);
+                cnt+=1;
+            }
+        }
+        return n-cnt;
+    }
