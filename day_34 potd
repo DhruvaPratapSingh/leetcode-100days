@@ -1,0 +1,24 @@
+https://leetcode.com/problems/sum-of-digits-of-string-after-convert/submissions/1377209992/
+
+ int getLucky(string s, int k) {
+        string str="";
+        for(int i=0;i<s.size();i++){
+           int a=s[i]-'a';
+           str+=to_string(a+1);
+        }
+        cout<<str<<endl;
+        while(k>1){
+            int val=0;
+            for(char ch:str){
+                 val+=(ch-'0');
+            }
+            str.clear();
+            str=to_string(val);
+            k--;
+        }
+        int ans=0;
+        for(char ch:str){
+         ans+=(ch-'0');
+        }
+        return ans;
+    }
