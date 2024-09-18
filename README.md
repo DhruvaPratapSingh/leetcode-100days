@@ -1,6 +1,4 @@
 
-![image](https://github.com/user-attachments/assets/b6bbf174-b538-4089-85f8-90fad18269b2)
-
 ## link
 [click here](https://leetcode.com/problems/merge-sorted-array/submissions/1341799842/?envType=study-plan-v2&envId=top-interview-150)
 
