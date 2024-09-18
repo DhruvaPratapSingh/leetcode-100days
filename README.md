@@ -47,3 +47,23 @@ vector<string> uncommonFromSentences(string s1, string s2) {
        return ans;
     }
 ```
+
+## day 49 ⤵️⤵️
+[problem link](https://leetcode.com/problems/largest-number/description/?envType=daily-question&envId=2024-09-18)
+
+# code 🚀💯
+```
+ string largestNumber(vector<int>& nums) {
+        vector<string>ans;
+        for(int &ele:nums){
+            ans.push_back(to_string(ele));
+        }
+        sort(ans.begin(),ans.end(),[&](string &a,string &b){
+            return a+b>b+a;
+        });
+        string res="";
+        for(string &str:ans)res+=str;
+        if(res[0]=='0')return "0";
+        return res;
+    }
+```
