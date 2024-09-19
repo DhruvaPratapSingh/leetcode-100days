@@ -65,3 +65,38 @@ vector<string> uncommonFromSentences(string s1, string s2) {
         return res;
     }
 ```
+
+
+## day 50 ⤵️⤵️
+[problem link](https://leetcode.com/problems/different-ways-to-add-parentheses/description/?envType=daily-question&envId=2024-09-19)
+
+# code 🚀💯
+
+```
+vector<int>helper(string str){
+    vector<int>ans;
+    for(int i=0;i<str.size();i++){
+        char ch=str[i];
+        if(ch=='+' || ch=='-' || ch=='*'){
+            vector<int>v1=helper(str.substr(0,i));
+            vector<int>v2=helper(str.substr(i+1));
+
+            for(int &ele:v1){
+                for(int &ele2:v2){
+                    if(ch=='+')ans.push_back(ele+ele2);
+                    else if(ch=='-')ans.push_back(ele-ele2);
+                    else if(ch=='*')ans.push_back(ele*ele2);
+                }
+            }
+        }
+    }
+    if(ans.size()==0){
+        ans.push_back(stoi(str));
+    }
+    return ans;
+}
+    vector<int> diffWaysToCompute(string expression) {
+        vector<int>res=helper(expression);
+        return res;
+    }
+```
