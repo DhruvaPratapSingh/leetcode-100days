@@ -7,10 +7,10 @@
 console.log("hello World !")
 ```
 
-## day 48
+## day 48 ✅🚀
 [problem](https://leetcode.com/problems/uncommon-words-from-two-sentences/description/?envType=daily-question&envId=2024-09-17)
 
-# code
+# code 🧑‍💻🧑‍💻
 ```
 vector<string> uncommonFromSentences(string s1, string s2) {
        unordered_map<string,int>m;
