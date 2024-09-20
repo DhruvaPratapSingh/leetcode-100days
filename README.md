@@ -1,4 +1,4 @@
-
+![CoolImGIF](https://github.com/user-attachments/assets/3a30d58a-77ea-4275-b46f-02e7dd319a12)
 ## link
 [click here](https://leetcode.com/problems/merge-sorted-array/submissions/1341799842/?envType=study-plan-v2&envId=top-interview-150)
 
@@ -98,5 +98,48 @@ vector<int>helper(string str){
     vector<int> diffWaysToCompute(string expression) {
         vector<int>res=helper(expression);
         return res;
+    }
+```
+
+## day 51 ![SadCatGIF](https://github.com/user-attachments/assets/644421a7-81dd-4c0a-a410-2c4835d91232)
+
+[problem link](https://leetcode.com/problems/shortest-palindrome/?envType=daily-question&envId=2024-09-20)
+
+# first read kmp algorythm which makes easy to tackle it ⤵️💯
+[kmp algorythm](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/)
+
+# code ![CoolImGIF (2)](https://github.com/user-attachments/assets/d80ac3ee-5b73-4231-983d-4fabace7b71f)
+```
+ vector<int> LPS(string pat) {
+        int n = pat.size();
+        vector<int> lps(n, 0);
+        int i = 1, j = 0;
+
+        while (i < n) {
+            if (pat[i] == pat[j]) {
+                lps[i++] = ++j;
+            } else {
+                if (j == 0) {
+                    lps[i++] = 0;
+                } else {
+                    j = lps[j - 1];
+                }
+            }
+        }
+        return lps;
+    }
+    string shortestPalindrome(string s) {
+         int n=s.size();
+      
+         if (s.empty()) return "";
+        string revs = s;
+        reverse(revs.begin(), revs.end());
+        string combined = s + "#" + revs;
+        vector<int> lps = LPS(combined);
+        int len = lps.back(); 
+        string to_add = s.substr(len); 
+        reverse(to_add.begin(), to_add.end());
+
+        return to_add + s;
     }
 ```
