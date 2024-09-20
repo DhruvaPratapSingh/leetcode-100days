@@ -1,4 +1,3 @@
-![CoolImGIF](https://github.com/user-attachments/assets/3a30d58a-77ea-4275-b46f-02e7dd319a12)
 ## link
 [click here](https://leetcode.com/problems/merge-sorted-array/submissions/1341799842/?envType=study-plan-v2&envId=top-interview-150)
 
