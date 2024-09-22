@@ -169,3 +169,38 @@ vector<int>helper(string str){
         return ans;
     }
 ```
+
+## day 53 🤺☠️
+
+[problem link](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/description/?envType=daily-question&envId=2024-09-22)
+
+# code 👩‍💻➕
+
+```
+int f(int prefix, int n) {
+        long long current=prefix, next = prefix + 1;
+        int count=0;
+        while (current<=n) {
+            count+=min(n+ 1LL,next)-current;
+            current*=10;
+            next*=10;
+        }
+        return count;
+    }
+    int findKthNumber(int n, int k) {
+        int current=1;
+        k--;
+        while (k>0) {
+            int count =f(current, n);
+            if (count<=k) {
+                current++;
+                k-= count;
+            }
+            else{
+                current*= 10;
+                k--;
+            }
+        }
+        return current;
+    }
+```
