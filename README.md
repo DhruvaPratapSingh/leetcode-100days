@@ -204,3 +204,26 @@ int f(int prefix, int n) {
         return current;
     }
 ```
+
+## day 54 
+[problem link](https://leetcode.com/problems/extra-characters-in-a-string/description/?envType=daily-question&envId=2024-09-23)
+
+# code
+
+```
+ int minExtraChar(string s, vector<string>& d) {
+unordered_set<string>dic(d.begin(),d.end());
+int n=s.size();
+vector<int>dp(n+1,0);
+for(int i=1;i<=n;i++){
+    dp[i]=dp[i-1]+1;
+    for(int j=0;j<i;j++){
+        string str=s.substr(j,i-j);
+        if(dic.find(str)!=dic.end()){
+            dp[i]=min(dp[i],dp[j]);
+        }
+    }
+}
+return dp[n];
+    }
+```
