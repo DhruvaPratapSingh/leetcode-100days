@@ -227,3 +227,131 @@ for(int i=1;i<=n;i++){
 return dp[n];
     }
 ```
+
+## day 55
+
+[problem link](https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/description/?envType=daily-question&envId=2024-09-24)
+
+# code
+# using trie ✅💯
+```
+    class TrieNode {
+public:
+    TrieNode* children[10];  // Digits 0-9
+
+    TrieNode() {
+        for (int i = 0; i < 10; ++i) {
+            children[i] = nullptr;
+        }
+    }
+};
+
+class Solution {
+private:
+    TrieNode* root;
+
+    // Insert a number's string representation into the Trie
+    void insert(const string& numStr) {
+        TrieNode* node = root;
+        for (char c : numStr) {
+            int digit = c - '0';
+            if (node->children[digit] == nullptr) {
+                node->children[digit] = new TrieNode();
+            }
+            node = node->children[digit];
+        }
+    }
+
+    // Find the longest common prefix between a number and the Trie
+    int getLongestPrefix(const string& numStr) {
+        TrieNode* node = root;
+        int commonLength = 0;
+        for (char c : numStr) {
+            int digit = c - '0';
+            if (node->children[digit] != nullptr) {
+                commonLength++;
+                node = node->children[digit];
+            } else {
+                break;  // Stop as soon as we cannot follow the Trie
+            }
+        }
+        return commonLength;
+    }
+
+public:
+    Solution() {
+        root = new TrieNode();
+    }
+
+    // Find the longest common prefix length
+    int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+        // Insert all numbers from arr1 into the Trie
+        for (int num : arr1) {
+            insert(to_string(num));
+        }
+
+        // Find the longest common prefix for each number in arr2
+        int maxLength = 0;
+        for (int num : arr2) {
+            maxLength = max(maxLength, getLongestPrefix(to_string(num)));
+        }
+
+        return maxLength;
+    }
+};
+```
+
+# using map 🤺🫵
+```
+int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+        unordered_map<string,int>m;
+        int n=arr1.size();
+        int p=arr2.size();
+        for(int i=0;i<n;i++){
+            string a=to_string(arr1[i]);
+            for(int j=0;j<a.size();j++){
+                m[a.substr(0,j+1)]=1;
+            }
+        }
+        int maxi=0;
+        for(int i=0;i<p;i++){
+            string a=to_string(arr2[i]);
+            for(int j=0;j<a.size();j++){
+                if(m[a.substr(0,j+1)]){
+                    maxi=max(maxi,j+1);
+                }
+            }
+        }
+        return maxi;
+    }
+```
+
+# bilkul brute force ❌❌
+```
+class Solution {
+public:
+    int helper(string &s,string &p){
+        int cnt=0;
+        for(int i=0;i<min(s.size(),p.size());i++){
+            if(s[i]==p[i]){
+                cnt++;
+            }
+            else break;
+        }
+        return cnt;
+    }
+    int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+        vector<pair<string,string>>p;
+        for(int i=0;i<arr1.size();i++){
+            for(int j=0;j<arr2.size();j++){
+                p.push_back({to_string(arr1[i]),to_string(arr2[j])});
+            }
+        }
+        int c=0;
+      for(int i=0;i<p.size();i++){
+       c=max(c,helper(p[i].first,p[i].second));
+      }
+        return c;
+    }
+};
+```
