@@ -355,3 +355,24 @@ public:
     }
 };
 ```
+## day 56
+[problem link](https://leetcode.com/problems/my-calendar-i/description/?envType=daily-question&envId=2024-09-26)
+# code
+```
+class MyCalendar {
+public:
+    // vector<pair<int,int>>p;
+    unordered_map<int,int>m;
+    MyCalendar() {
+        
+    }
+    
+    bool book(int start, int end) {
+      for(auto ele:m){
+        if(ele.first<end and ele.second>start)return 0;
+      }
+      m[start]=end;
+      return 1;
+    }
+};
+```
