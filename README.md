@@ -376,3 +376,30 @@ public:
     }
 };
 ```
+## day 57 🚀✅
+[problem link](https://leetcode.com/problems/my-calendar-ii/)
+
+# code☠️👩‍💻
+```
+vector<pair<int,int>> events;
+    vector<pair<int,int>> overlaps;
+    MyCalendarTwo() {
+        
+    }
+    
+    bool book(int start, int end) {
+        for(auto& p:overlaps){
+            if(start<p.second && p.first<end){return false;}
+        }
+        for(auto& p:events){
+            if (start<p.second && p.first<end){
+                //common overlap interval inserted
+                overlaps.push_back({max(start, p.first),min(end, p.second)});
+            }
+        }
+        events.push_back({start,end});
+        return true;
+    }
+};
+
+```
