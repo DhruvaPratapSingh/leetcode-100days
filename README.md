@@ -403,3 +403,101 @@ vector<pair<int,int>> events;
 };
 
 ```
+## day 58
+[problem link](https://leetcode.com/problems/my-calendar-ii/?envType=daily-question&envId=2024-09-28)
+
+# code
+```
+class MyCalendarTwo {
+public:
+ vector<pair<int,int>> events;
+    vector<pair<int,int>> overlaps;
+    MyCalendarTwo() {
+        
+    }
+    
+    bool book(int start, int end) {
+        for(auto& p:overlaps){
+            if(start<p.second && p.first<end){return false;}
+        }
+        for(auto& p:events){
+            if (start<p.second && p.first<end){
+                //common overlap interval inserted
+                overlaps.push_back({max(start, p.first),min(end, p.second)});
+            }
+        }
+        events.push_back({start,end});
+        return true;
+    }
+};
+```
+
+## day 59
+
+[problem link](https://leetcode.com/problems/design-circular-deque/?envType=daily-question&envId=2024-09-28)
+
+# code
+```
+class MyCircularDeque {
+public:
+  deque<int>dq;
+  int size;
+    MyCircularDeque(int k) {
+        size=k;
+    }
+    
+    bool insertFront(int value) {
+        if(dq.size()<size){
+            dq.push_front(value);
+            return 1;
+        }
+        return 0;
+    }
+    
+    bool insertLast(int value) {
+        if(dq.size()<size){
+            dq.push_back(value);
+            return 1;
+        }
+        return 0;
+    }
+    
+    bool deleteFront() {
+        if(dq.size()>0){
+            dq.pop_front();
+            return 1;
+        }
+        return 0;
+    }
+    
+    bool deleteLast() {
+        if(dq.size()>0){
+            dq.pop_back();
+            return 1;
+        }
+        return 0;
+    }
+    
+    int getFront() {
+        if(dq.size()>0){
+            return dq.front();
+        }
+        return -1;
+    }
+    
+    int getRear() {
+        if(dq.size()>0){
+            return dq.back();
+        }
+        return -1;
+    }
+    
+    bool isEmpty() {
+        return dq.size()==0;
+    }
+    
+    bool isFull() {
+        return dq.size()==size;
+    }
+};
+```
