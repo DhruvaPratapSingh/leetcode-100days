@@ -501,3 +501,41 @@ public:
     }
 };
 ```
+## day 60
+[problem link](https://leetcode.com/problems/all-oone-data-structure/description/?envType=daily-question&envId=2024-09-29)
+
+# code
+```
+class AllOne {
+    unordered_map<string,int>m;
+    map<int,unordered_set<string>>s;
+public:
+
+    AllOne() {
+        
+    }
+    
+    void inc(string key) {
+        int cnt=m[key]++;
+        if(cnt>0)s[cnt].erase(key);
+        s[cnt+1].insert(key);
+        if(s[cnt].empty())s.erase(cnt);
+    }
+    
+    void dec(string key) {
+        int cnt=m[key]--;
+        if(cnt>0)s[cnt].erase(key);
+        if(cnt==1)m.erase(key);
+        else s[cnt-1].insert(key);
+        if(s[cnt].empty())s.erase(cnt);
+    }
+    
+    string getMaxKey() {
+        return s.empty() ? "":*(s.rbegin()->second.begin());
+    }
+    
+    string getMinKey() {
+        return s.empty() ? "":*(s.begin()->second.begin());
+    }
+};
+```
