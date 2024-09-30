@@ -539,3 +539,42 @@ public:
     }
 };
 ```
+## day 61
+[problem link](https://leetcode.com/problems/design-a-stack-with-increment-operation/description/?envType=daily-question&envId=2024-09-30)
+
+# code
+```
+class CustomStack {
+    vector<int>ans;
+    int size;
+public:
+    CustomStack(int maxsize) {
+        size=maxsize;
+    }
+    
+    void push(int x) {
+        if(ans.size()<size){
+            ans.push_back(x);
+        }
+    }
+    
+    int pop() {
+        int n=ans.size();
+        if(n){
+            int val=ans[n-1];
+            ans.pop_back();
+            return val;
+        }
+        return -1;
+    }
+    
+    void increment(int k, int val) {
+        int i=0;
+        int n=ans.size();
+       while(i<n and k--){
+        ans[i]+=val;
+        i++;
+       }
+    }
+};
+```
