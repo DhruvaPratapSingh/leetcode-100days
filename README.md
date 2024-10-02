@@ -578,3 +578,26 @@ public:
     }
 };
 ```
+## day 62
+
+## day 63
+
+[problem link](https://leetcode.com/problems/rank-transform-of-an-array/description/?envType=daily-question&envId=2024-10-02)
+
+# code
+```
+vector<int> arrayRankTransform(vector<int>& arr) {
+      unordered_map<int, int> numToRank;
+        // Deduplicate and sort arr
+        set<int> nums(arr.begin(), arr.end());
+        int rank = 1;
+        for (auto num : nums) {
+            numToRank[num] = rank;
+            rank++;
+        }
+        for (int i = 0; i < arr.size(); i++) {
+            arr[i] = numToRank[arr[i]];
+        }
+        return arr;
+    }
+```
