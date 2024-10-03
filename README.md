@@ -601,3 +601,8 @@ vector<int> arrayRankTransform(vector<int>& arr) {
         return arr;
     }
 ```
+## day 64
+
+[problem link](https://leetcode.com/problems/make-sum-divisible-by-p/description/)
+
+
