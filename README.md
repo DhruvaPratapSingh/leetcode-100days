@@ -606,3 +606,13 @@ vector<int> arrayRankTransform(vector<int>& arr) {
 [problem link](https://leetcode.com/problems/make-sum-divisible-by-p/description/)
 
 
+## day 65
+[problem link](https://leetcode.com/problems/divide-players-into-teams-of-equal-skill/?envType=daily-question&envId=2024-10-06)
+
+## day 66
+[problem link](https://leetcode.com/problems/permutation-in-string/?envType=daily-question&envId=2024-10-06)
+
+## day 67
+[problem link](https://leetcode.com/problems/sentence-similarity-iii/description/?envType=daily-question&envId=2024-10-06)
+
+
