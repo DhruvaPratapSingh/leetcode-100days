@@ -615,4 +615,23 @@ vector<int> arrayRankTransform(vector<int>& arr) {
 ## day 67
 [problem link](https://leetcode.com/problems/sentence-similarity-iii/description/?envType=daily-question&envId=2024-10-06)
 
+## day 68
+[problem link](https://leetcode.com/problems/minimum-string-length-after-removing-substrings/description/?envType=daily-question&envId=2024-10-07)
+
+# code
+```
+int minLength(string s) {
+        stack<char>st;
+        for(int i=0;i<s.size();i++){
+            if(!st.empty() and st.top()=='A' and s[i]=='B'){
+                st.pop();
+            }
+            else if(!st.empty() and st.top()=='C' and s[i]=='D'){
+                st.pop();
+            }
+            else st.push(s[i]);
+        }
+        return st.size();
+    }
+```
 
